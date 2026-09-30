@@ -1,0 +1,241 @@
+---
+/**
+ * contact.astro — Contact Page
+ *
+ * Header: Hero section with 'Contact' title (60px) and 'Contact Us' paragraph.
+ * Content: Contact box callout from About page (glass card with CTA and email link).
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+---
+
+<BaseLayout
+  title="Contact"
+  description="Get in touch with White Fawn LLC. We welcome the opportunity to listen and explore collaboration with educational institutions, nonprofits, and tribal organizations."
+>
+  {
+    /* ═══════════════════════════════════════════════════════════════════════
+      1. Header
+      ═══════════════════════════════════════════════════════════════════════ */
+  }
+  <header class="contact-hero section" aria-labelledby="contact-hero-title">
+    <div class="container contact-hero-inner">
+      <h1
+        id="contact-hero-title"
+        class="contact-hero-headline"
+        style="font-size: 60px;"
+      >
+        Contact<br />
+      </h1>
+
+      <!-- <p class="contact-hero-subhead">C</p> -->
+    </div>
+  </header>
+
+  {
+    /* ═══════════════════════════════════════════════════════════════════════
+      2. Contact Box Section (Matches About page contact box)
+      ═══════════════════════════════════════════════════════════════════════ */
+  }
+  <section
+    id="contact-callout"
+    class="contact-section section"
+    aria-labelledby="contact-box-title"
+  >
+    <div class="container">
+      <div class="contact-box glass-card">
+        <div class="contact-box-content">
+          <p class="contact-eyebrow">Connect With Us</p>
+          <h2 id="contact-box-title" class="contact-headline">
+            Let’s Build Something Meaningful Together
+          </h2>
+          <p class="contact-description">
+            Whether your organization is embarking on a curriculum redesign,
+            digitizing vital cultural archives, or planning sovereign community
+            technology, we welcome the opportunity to listen and explore
+            collaboration.
+          </p>
+
+          <div class="contact-actions">
+            <Button variant="primary" href="mailto:white.fawn0@gmail.com">
+              Start a Conversation
+            </Button>
+            <a href="mailto:white.fawn0@gmail.com" class="contact-email-link">
+              <svg
+                class="email-icon"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                ></path>
+                <path
+                  d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                ></path>
+              </svg>
+              <span>white.fawn0@gmail.com</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ═══════════════════════════════════════════════════════════════════════════
+     1. Contact Hero
+     ═══════════════════════════════════════════════════════════════════════════ */
+  .contact-hero {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-8);
+    position: relative;
+  }
+
+  .contact-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 52rem;
+  }
+
+  .contact-hero-headline {
+    font-size: 60px;
+    color: var(--color-secondary);
+    line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-4);
+  }
+
+  .contact-hero-subhead {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-secondary-80);
+    max-width: 44rem;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     2. Contact Box (Exact styling from About page)
+     ═══════════════════════════════════════════════════════════════════════════ */
+  .contact-section {
+    padding-top: var(--space-4);
+    padding-bottom: var(--space-24);
+  }
+
+  .contact-box {
+    padding: clamp(var(--space-8), 6vw, var(--space-16));
+    border-radius: 2rem;
+    background: linear-gradient(
+      140deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(235, 246, 254, 0.65) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow:
+      0 16px 48px rgba(46, 64, 87, 0.08),
+      0 2px 8px rgba(46, 64, 87, 0.04);
+  }
+
+  .contact-box-content {
+    max-width: 44rem;
+    margin-inline: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .contact-eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-accent-dark);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .contact-headline {
+    font-size: clamp(var(--text-2xl), 1.5rem + 1.5vw, var(--text-3xl));
+    color: var(--color-secondary);
+    line-height: var(--leading-tight);
+  }
+
+  .contact-description {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-secondary-70);
+    max-width: 48ch;
+  }
+
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-4);
+  }
+
+  .contact-email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-secondary);
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    border: 1px solid var(--color-secondary-20);
+    border-radius: var(--btn-radius);
+    background: rgba(255, 255, 255, 0.5);
+    transition:
+      background var(--transition-fast),
+      border-color var(--transition-fast),
+      transform var(--transition-fast);
+  }
+
+  .contact-email-link:hover {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: var(--color-secondary-50);
+    transform: translateY(-1px);
+  }
+
+  .email-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+    color: var(--color-accent-dark);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     Reduced Motion & Responsive Breakpoints
+     ═══════════════════════════════════════════════════════════════════════════ */
+  @media (prefers-reduced-motion: reduce) {
+    .contact-email-link:hover {
+      transform: none;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-hero {
+      padding-top: var(--space-12);
+      padding-bottom: var(--space-6);
+    }
+
+    .contact-hero-headline {
+      font-size: var(--text-3xl) !important;
+    }
+
+    .contact-actions {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .contact-actions :global(.btn),
+    .contact-email-link {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
