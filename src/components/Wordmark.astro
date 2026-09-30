@@ -1,0 +1,41 @@
+---
+/**
+ * Wordmark.astro — Text logo for White Fawn LLC.
+ *
+ * Intentionally isolated: replace this single component if an approved
+ * image logo is provided later, with no changes needed elsewhere.
+ *
+ * Note: "LLC" is intentionally omitted from the wordmark per brand guidelines.
+ */
+import { url } from '../data/nav.ts';
+---
+
+<a href={url('/')} class="wordmark" aria-label="White Fawn — return to home">
+  {/* TODO [BRAND]: Replace inner content with <img> when an approved logo image is provided. */}
+  <span class="wordmark-text" aria-hidden="true">White Fawn</span>
+</a>
+
+<style>
+  .wordmark {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: var(--space-1) var(--space-2);
+    margin-inline: calc(-1 * var(--space-2));
+    transition: opacity var(--transition-fast);
+  }
+
+  .wordmark:hover {
+    opacity: 0.8;
+  }
+
+  .wordmark-text {
+    font-family: var(--font-heading);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--text-xl);
+    color: var(--color-secondary);
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+</style>

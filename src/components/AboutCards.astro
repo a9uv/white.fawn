@@ -1,0 +1,172 @@
+---
+/**
+ * AboutCards.astro — About section with three GlassCards.
+ *
+ * Section id="about" — this is the scroll target for the Navbar "About" link.
+ * All card copy is PLACEHOLDER — replace before launch.
+ *
+ * Icons are inline SVG, nature-inspired and non-stereotypical.
+ * Do NOT use feathers, arrowheads, dreamcatchers, headdresses, or any
+ * pan-Indian imagery.
+ */
+import GlassCard from './GlassCard.astro';
+import { url } from '../data/nav.ts';
+---
+
+<section id="about" class="about section" aria-labelledby="about-heading">
+  <div class="container">
+
+    <header class="about-header">
+      <p class="about-eyebrow">Our Practice</p>
+      <h2 id="about-heading" class="about-title">
+        Grounded in Community,<br />
+        Guided by Expertise
+      </h2>
+      {/* TODO [COPY]: Replace section subtitle with approved brand copy. */}
+      <p class="about-subtitle">
+        We bring together academic rigor and practical implementation to serve
+        organizations whose work sustains and celebrates indigenous cultures
+        across the Midwest.
+      </p>
+    </header>
+
+    <div class="cards-grid">
+
+      {/* ── Card 1: Who We Are ───────────────────────────────────────────── */}
+      <GlassCard heading="Who We Are">
+        {/* Abstract sprout/leaf icon — represents growth and nurturing */}
+        <svg slot="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M12 21V12M12 12C12 12 7 11 5 7C7 3 12 3 12 3C12 3 17 3 19 7C17 11 12 12 12 12Z" />
+          <path d="M12 12C12 12 9 14 9 17" stroke-opacity="0.5" />
+        </svg>
+
+        {/* TODO [COPY]: Replace with approved description of the firm. */}
+        <p>
+          White Fawn LLC is an independent consulting firm founded to bridge
+          academic thought and technical implementation for mission-driven
+          organizations.
+        </p>
+        <p>
+          We work exclusively with nonprofits, educational institutions, and
+          cultural organizations whose efforts support and celebrate the
+          indigenous communities of the Midwest.
+        </p>
+      </GlassCard>
+
+      {/* ── Card 2: Our Vision ───────────────────────────────────────────── */}
+      <GlassCard heading="Our Vision">
+        {/* Abstract horizon/mountain arc — represents aspiration and landscape */}
+        <svg slot="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 17L8 11L12 14L16 9L21 17" />
+          <path d="M3 21H21" stroke-opacity="0.4" />
+          <circle cx="18" cy="6" r="2" stroke-opacity="0.6" />
+        </svg>
+
+        {/* TODO [COPY]: Replace with approved vision statement. */}
+        <p>
+          We believe that lasting, meaningful change in communities requires
+          both intellectual depth and the practical ability to act — two
+          disciplines that are rarely found together.
+        </p>
+        <p>
+          Our vision is a consulting practice where every engagement is
+          thoughtfully designed, culturally grounded, and built to endure.
+        </p>
+      </GlassCard>
+
+      {/* ── Card 3: Our Portfolio ─────────────────────────────────────────── */}
+      <GlassCard heading="Our Portfolio">
+        {/* Abstract flowing lines — represents craft, interconnection, water */}
+        <svg slot="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 8C6 8 6 5 9 5C12 5 12 8 15 8C18 8 18 5 21 5" />
+          <path d="M3 14C6 14 6 11 9 11C12 11 12 14 15 14C18 14 18 11 21 11" stroke-opacity="0.6" />
+          <path d="M3 20C6 20 6 17 9 17C12 17 12 20 15 20C18 20 18 17 21 17" stroke-opacity="0.3" />
+        </svg>
+
+        {/* TODO [COPY]: Replace with approved portfolio summary. */}
+        <p>
+          From strategic planning and curriculum design to database architecture
+          and web presence — our portfolio spans the full range of academic and
+          technical work that community organizations need.
+        </p>
+        <p>
+          {/* Phase 2 placeholder — Portfolio page does not exist yet */}
+          <a href={url('/portfolio')}>
+            Explore our work →
+          </a>
+        </p>
+      </GlassCard>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    position: relative;
+  }
+
+  /* ── Section header ─────────────────────────────────────────────────────── */
+  .about-header {
+    text-align: center;
+    max-width: 50rem;
+    margin-inline: auto;
+    margin-bottom: var(--space-12);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .about-eyebrow {
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-secondary-50);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    max-width: none;
+  }
+
+  .about-title {
+    font-size: var(--text-3xl);
+    letter-spacing: -0.025em;
+    color: var(--color-secondary);
+  }
+
+  .about-title br {
+    display: none;
+  }
+
+  @media (min-width: 600px) {
+    .about-title br {
+      display: block;
+    }
+  }
+
+  .about-subtitle {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--color-secondary-70);
+    margin-inline: auto;
+  }
+
+  /* ── Cards grid ─────────────────────────────────────────────────────────── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+    align-items: stretch;
+  }
+
+  @media (max-width: 900px) {
+    .cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

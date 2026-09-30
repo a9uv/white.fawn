@@ -1,0 +1,97 @@
+---
+/**
+ * GlassCard.astro — Reusable glass card primitive.
+ *
+ * Props:
+ *   heading   Card heading text (rendered as <h3>)
+ *   class     Additional classes passed through
+ *
+ * Slots:
+ *   icon      (optional) Inline SVG icon — nature-inspired, non-stereotypical
+ *   default   Card body content (paragraphs, links, etc.)
+ */
+interface Props {
+  heading: string;
+  class?: string;
+}
+
+const { heading, class: className } = Astro.props;
+---
+
+<article class:list={['glass-card', 'card', className]}>
+  {/* Icon slot — leave empty slot if no icon provided */}
+  <div class="card-icon" aria-hidden="true">
+    <slot name="icon" />
+  </div>
+
+  <h3 class="card-heading">{heading}</h3>
+
+  <div class="card-body">
+    <slot />
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding: var(--glass-padding);
+  }
+
+  .card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background: var(--color-accent-10);
+    border: 1px solid var(--color-accent-20);
+    border-radius: 0.75rem;
+    color: var(--color-secondary);
+    flex-shrink: 0;
+  }
+
+  .card-icon :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+    stroke: var(--color-secondary);
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .card-heading {
+    font-size: var(--text-xl);
+    color: var(--color-secondary);
+    line-height: var(--leading-snug);
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    flex: 1;
+  }
+
+  .card-body :global(p) {
+    font-size: var(--text-sm);
+    line-height: var(--leading-relaxed);
+    color: var(--color-secondary-90);
+    max-width: 100%;
+  }
+
+  .card-body :global(a) {
+    color: var(--color-secondary);
+    font-weight: var(--font-weight-medium);
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent-50);
+    text-underline-offset: 3px;
+    transition: text-decoration-color var(--transition-fast);
+  }
+
+  .card-body :global(a:hover) {
+    text-decoration-color: var(--color-accent);
+  }
+</style>

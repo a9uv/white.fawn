@@ -1,0 +1,135 @@
+---
+/**
+ * Button.astro — Reusable button / CTA primitive.
+ *
+ * Props:
+ *   variant  'primary' | 'secondary' | 'contact'
+ *            primary  → accent fill, --color-secondary label (main hero CTAs)
+ *            secondary → transparent, --color-secondary border + label
+ *            contact  → same fill as primary but compact (used in Navbar)
+ *   href     If provided, renders as <a>; otherwise renders as <button>.
+ *   type     button | submit | reset (only for <button> rendering)
+ *   class    Pass-through for additional classes
+ *
+ * Contrast note: text on accent fill must be --color-secondary at semibold
+ * or heavier. NEVER use white text on the accent color.
+ */
+interface Props {
+  variant?: 'primary' | 'secondary' | 'contact';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  variant = 'primary',
+  href,
+  type = 'button',
+  class: className,
+  ...rest
+} = Astro.props;
+
+const tag = href ? 'a' : 'button';
+---
+
+{tag === 'a' ? (
+  <a
+    href={href}
+    class:list={['btn', `btn--${variant}`, className]}
+    {...rest}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class:list={['btn', `btn--${variant}`, className]}
+    {...rest}
+  >
+    <slot />
+  </button>
+)}
+
+<style>
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    min-height: var(--btn-min-target);
+    font-family: var(--font-body);
+    font-size: var(--btn-font-size);
+    font-weight: var(--btn-font-weight);
+    border-radius: var(--btn-radius);
+    border: 2px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+      background var(--transition-fast),
+      border-color var(--transition-fast),
+      box-shadow var(--transition-fast),
+      transform var(--transition-fast);
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .btn:hover {
+    transform: translateY(-1px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn:hover {
+      transform: none;
+    }
+    .btn {
+      transition: background var(--transition-fast), border-color var(--transition-fast);
+    }
+  }
+
+  /* ── Primary: deep blue fill, white label (contrast ~5.6:1 ✓) ── */
+  .btn--primary {
+    background: var(--color-accent-dark);
+    color: #ffffff;
+    border-color: var(--color-accent-dark);
+    box-shadow: 0 2px 12px var(--color-accent-dark-30);
+  }
+
+  .btn--primary:hover {
+    background: var(--color-accent-dark-hover);
+    border-color: var(--color-accent-dark-hover);
+    box-shadow: 0 4px 20px var(--color-accent-dark-30);
+  }
+
+  /* ── Secondary: outlined, no fill ── */
+  .btn--secondary {
+    background: transparent;
+    color: var(--color-secondary);
+    border-color: var(--color-secondary-30);
+  }
+
+  .btn--secondary:hover {
+    background: var(--color-secondary-05);
+    border-color: var(--color-secondary-50);
+    box-shadow: 0 2px 12px var(--color-secondary-10);
+  }
+
+  /* ── Contact (navbar CTA): deep blue fill, white label, compact padding ── */
+  .btn--contact {
+    background: var(--color-accent-dark);
+    color: #ffffff;
+    border-color: var(--color-accent-dark);
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    font-size: var(--text-xs);
+    box-shadow: 0 2px 8px var(--color-accent-dark-20);
+  }
+
+  .btn--contact:hover {
+    background: var(--color-accent-dark-hover);
+    border-color: var(--color-accent-dark-hover);
+    box-shadow: 0 3px 14px var(--color-accent-dark-30);
+  }
+</style>

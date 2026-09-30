@@ -1,0 +1,133 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   tokens.css — White Fawn LLC Design System
+   ALL design decisions live here. Tune the site from this file only.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Palette ────────────────────────────────────────────────────────────
+     EXACTLY three hues. No additional colors anywhere in the codebase.
+     Contrast note: --color-accent (#31B0F5) on --color-bg (#FAF9F6) is ~2.3:1
+     — NEVER use accent for body text or small text. Decorative use only.
+     All readable text uses --color-secondary (#2E4057).
+     ────────────────────────────────────────────────────────────────────── */
+  --color-bg:        #FAF9F6;
+  --color-accent:    #31B0F5;
+  --color-secondary: #2E4057;
+
+  /* Accent opacity variants — decorative / structural use only */
+  --color-accent-05:  rgba(49, 176, 245, 0.05);
+  --color-accent-10:  rgba(49, 176, 245, 0.10);
+  --color-accent-15:  rgba(49, 176, 245, 0.15);
+  --color-accent-20:  rgba(49, 176, 245, 0.20);
+  --color-accent-30:  rgba(49, 176, 245, 0.30);
+  --color-accent-50:  rgba(49, 176, 245, 0.50);
+
+  /* Deeper accent — ocean blue. White text on this color is ~5.6:1 (WCAG AA ✓).
+     Use for filled CTA buttons, strong interactive elements. */
+  --color-accent-dark:        #1A6AB5;
+  --color-accent-dark-hover:  #155A9E;   /* ~8% darker for hover state */
+  --color-accent-dark-20:     rgba(26, 106, 181, 0.20);
+  --color-accent-dark-30:     rgba(26, 106, 181, 0.30);
+
+  /* Secondary opacity variants */
+  --color-secondary-05:  rgba(46, 64, 87, 0.05);
+  --color-secondary-08:  rgba(46, 64, 87, 0.08);
+  --color-secondary-10:  rgba(46, 64, 87, 0.10);
+  --color-secondary-15:  rgba(46, 64, 87, 0.15);
+  --color-secondary-20:  rgba(46, 64, 87, 0.20);
+  --color-secondary-30:  rgba(46, 64, 87, 0.30);
+  --color-secondary-50:  rgba(46, 64, 87, 0.50);
+  --color-secondary-70:  rgba(46, 64, 87, 0.70);
+  --color-secondary-90:  rgba(46, 64, 87, 0.90);
+
+  /* ── Typography ────────────────────────────────────────────────────────── */
+  --font-heading: 'Newsreader Variable', Georgia, serif;
+  --font-body:    'Inter Variable', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --font-weight-normal:   400;
+  --font-weight-medium:   500;
+  --font-weight-semibold: 600;
+  --font-weight-bold:     700;
+
+  /* Fluid type scale — clamp(min, fluid, max) */
+  --text-xs:   clamp(0.75rem,   0.72rem  + 0.15vw,  0.8125rem);
+  --text-sm:   clamp(0.875rem,  0.84rem  + 0.175vw, 0.9375rem);
+  --text-base: clamp(1rem,      0.975rem + 0.125vw, 1.0625rem);
+  --text-lg:   clamp(1.125rem,  1.05rem  + 0.375vw, 1.375rem);
+  --text-xl:   clamp(1.25rem,   1.1rem   + 0.75vw,  1.75rem);
+  --text-2xl:  clamp(1.5rem,    1.25rem  + 1.25vw,  2.25rem);
+  --text-3xl:  clamp(2rem,      1.5rem   + 2.5vw,   3.25rem);
+  --text-4xl:  clamp(2.5rem,    1.75rem  + 3.75vw,  4.5rem);
+
+  --leading-tight:   1.15;
+  --leading-snug:    1.35;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.75;
+
+  /* ── Spacing ────────────────────────────────────────────────────────────── */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+
+  /* ── Glass surface tokens ───────────────────────────────────────────────
+     All glass parameters are here. Tune the look without touching component code.
+     ─────────────────────────────────────────────────────────────────────── */
+  --glass-blur:         16px;
+  --glass-saturate:     180%;
+  --glass-bg:           rgba(255, 255, 255, 0.58);
+  --glass-bg-hover:     rgba(255, 255, 255, 0.70);
+  --glass-border:       rgba(255, 255, 255, 0.64);
+  --glass-shadow:       0 4px 32px rgba(46, 64, 87, 0.08), 0 1px 4px rgba(46, 64, 87, 0.05);
+  --glass-shadow-hover: 0 12px 48px rgba(46, 64, 87, 0.12), 0 3px 10px rgba(46, 64, 87, 0.07);
+  --glass-radius:       1.5rem;
+  --glass-padding:      var(--space-8);
+
+  /* Navbar glass (slightly more opaque for readability over scrolled content) */
+  --glass-nav-bg:     rgba(250, 249, 246, 0.80);
+  --glass-nav-border: rgba(255, 255, 255, 0.55);
+  --glass-nav-shadow: 0 1px 20px rgba(46, 64, 87, 0.07), 0 0 0 1px rgba(255, 255, 255, 0.40);
+
+  /* ── Background blob layer ──────────────────────────────────────────────
+     Blob colors and opacities — keep subtle and elegant, not neon.
+     ─────────────────────────────────────────────────────────────────────── */
+  --blob-accent-opacity:    0.12;
+  --blob-secondary-opacity: 0.07;
+  --blob-blur:              80px;
+
+  /* ── Transitions ───────────────────────────────────────────────────────── */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 450ms ease;
+
+  /* ── Z-index layers ─────────────────────────────────────────────────────── */
+  --z-blobs:   -1;
+  --z-base:     0;
+  --z-raised:  10;
+  --z-nav:    100;
+  --z-overlay: 200;
+
+  /* ── Layout ─────────────────────────────────────────────────────────────── */
+  --content-width:   76rem;    /* ~1216px */
+  --content-padding: clamp(var(--space-4), 4vw, var(--space-8));
+
+  /* ── Navbar ─────────────────────────────────────────────────────────────── */
+  --nav-height: 4.5rem;
+
+  /* ── Button ─────────────────────────────────────────────────────────────── */
+  --btn-radius:      9999px;   /* pill shape */
+  --btn-padding-y:   0.6875rem;
+  --btn-padding-x:   1.75rem;
+  --btn-font-size:   var(--text-sm);
+  --btn-font-weight: var(--font-weight-semibold);
+  --btn-min-target:  44px;     /* WCAG 2.5.5 touch target */
+}

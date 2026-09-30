@@ -1,0 +1,165 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   base.css — Reset, typography, focus styles, and global helpers
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Self-hosted fonts via Fontsource ─────────────────────────────────────── */
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/newsreader';
+
+/* ── Design tokens ────────────────────────────────────────────────────────── */
+@import './tokens.css';
+
+/* ── Box-sizing reset ─────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Root ─────────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Scrollbar gutter reservation prevents layout shift when overflow toggles */
+  scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ── Body ─────────────────────────────────────────────────────────────────── */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-secondary);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--leading-normal);
+  min-height: 100dvh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Headings ─────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--color-secondary);
+  /* Prevent orphaned short last lines in large display headings */
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--text-4xl); }
+h2 { font-size: var(--text-3xl); }
+h3 { font-size: var(--text-2xl); }
+h4 { font-size: var(--text-xl); }
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); }
+
+/* ── Body text ────────────────────────────────────────────────────────────── */
+p {
+  max-width: 68ch;
+  color: var(--color-secondary);
+}
+
+/* ── Links ────────────────────────────────────────────────────────────────── */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ── Lists ────────────────────────────────────────────────────────────────── */
+ul, ol {
+  list-style: none;
+}
+
+/* ── Media ────────────────────────────────────────────────────────────────── */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+img, video {
+  height: auto;
+}
+
+/* ── Form elements ────────────────────────────────────────────────────────── */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* ── Focus styles (only on keyboard navigation) ───────────────────────────── */
+:focus-visible {
+  outline: 2.5px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ── Text selection ───────────────────────────────────────────────────────── */
+::selection {
+  background-color: var(--color-accent-20);
+  color: var(--color-secondary);
+}
+
+/* ── Skip-to-content link ─────────────────────────────────────────────────── */
+.skip-link {
+  position: fixed;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: var(--z-overlay);
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-secondary);
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--btn-radius);
+  text-decoration: none;
+  transform: translateY(calc(-100% - var(--space-8)));
+  transition: transform var(--transition-base);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline-offset: 4px;
+}
+
+/* ── Utility: screen-reader only ──────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Content container ────────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--content-padding);
+}
+
+/* ── Section spacing ──────────────────────────────────────────────────────── */
+.section {
+  padding-block: var(--space-20);
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-block: var(--space-12);
+  }
+}
