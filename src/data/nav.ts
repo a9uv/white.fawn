@@ -52,7 +52,7 @@ export function url(path: string): string {
 export const navItems: NavItem[] = [
   {
     label: 'About',
-    href: '#about', // Scrolls to the About section on the home page
+    href: '/about',
     variant: 'link',
   },
   {
