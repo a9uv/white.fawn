@@ -1,0 +1,309 @@
+---
+/**
+ * portfolio.astro — Our Portfolio Page
+ *
+ * Header: Matches About page header (title + meta pills) without the description.
+ * Content: 3 columns, 2 rows of cards styled like the contact glass card.
+ * Card structure: Image (lake_michigan_beach.jpg) -> Organization -> Project Name -> Description of what we provided.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { url } from "../data/nav.ts";
+
+const projects = [
+  {
+    title: "Indigenous Education Conference Brochure",
+    organization: "Wisconsin Indian Education Association (WIEA)",
+    image: "/lake_michigan_beach.jpg",
+    description:
+      "Created a culturally relevant brochure for WEIA's Annual Conference hosted in Madison, WI. ",
+  },
+  {
+    title: "Youth Led Rain Garden Initiative",
+    organization: "PlanetPatch Inc.",
+    image: "/lake_michigan_beach.jpg",
+    description:
+      "Consulted with PlanetPatch Inc. on plant selection for a youth led rain garden initiative to engage high schoolers in environmental stewardship.",
+  },
+  // {
+  //   title: "Urban Prairie & Native Plant Revegetation",
+  //   organization:
+  //     "Dane County Parks & Native Plant Stewardship Group (Madison, WI)",
+  //   image: "/lake_michigan_beach.jpg",
+  //   description:
+  //     "Facilitated ecological consultation blending traditional fire stewardship practices with municipal land-use guidelines to reintroduce native oak savanna flora and revitalize degraded prairie parcels.",
+  // },
+  // {
+  //   title: "Tribal Cultural Landscape & Ecological Mapping",
+  //   organization: "Upper Midwest Cultural Heritage Foundation",
+  //   image: "/lake_michigan_beach.jpg",
+  //   description:
+  //     "Designed a sovereign geospatial mapping framework documenting historic medicinal plant distributions, seasonal waterways, and cultural landmarks while ensuring full community data governance.",
+  // },
+  // {
+  //   title: "Environmental Curriculum & Field Science Integration",
+  //   organization: "College of Menominee Nation Collaborative",
+  //   image: "/lake_michigan_beach.jpg",
+  //   description:
+  //     "Developed an accredited undergraduate environmental science module pairing Indigenous Environmental Knowledge with contemporary climate monitoring methodologies and field-based water quality testing.",
+  // },
+  // {
+  //   title: "Forest Canopy & Fire Resilience Assessment",
+  //   organization: "Northern Forests Stewardship Alliance",
+  //   image: "/lake_michigan_beach.jpg",
+  //   description:
+  //     "Conducted a comprehensive woodland consultation evaluating cultural prescribed burning techniques and understory biodiversity to mitigate wildfire risk across northern Wisconsin forests.",
+  // },
+];
+---
+
+<BaseLayout
+  title="Our Portfolio"
+  description="Explore White Fawn LLC's advisory work in Indigenous Environmental Knowledge, cultural ecology, curriculum design, and technical sovereignty across the Midwest."
+>
+  {
+    /* ═══════════════════════════════════════════════════════════════════════
+      1. Header (Same as About page header without description)
+      ═══════════════════════════════════════════════════════════════════════ */
+  }
+  <header class="portfolio-hero section" aria-labelledby="portfolio-hero-title">
+    <div class="container portfolio-hero-inner">
+      <h1
+        id="portfolio-hero-title"
+        class="portfolio-hero-headline"
+        style="font-size: 60px;"
+      >
+        Our Portfolio<br />
+      </h1>
+
+      <p>Demonstrating work we have done with Midwest community members.</p>
+    </div>
+
+    {
+      /* ═══════════════════════════════════════════════════════════════════════
+      2. Portfolio Overview (3 Columns, 2 Rows of Cards)
+      ═══════════════════════════════════════════════════════════════════════ */
+    }
+    <section class="portfolio-section section" aria-label="Portfolio Projects">
+      <div class="container">
+        <div class="portfolio-grid">
+          {
+            projects.map((project) => (
+              <article class="portfolio-card glass-card">
+                <div class="portfolio-card-media">
+                  <img
+                    src={url(project.image)}
+                    alt={`${project.title} — ${project.organization}`}
+                    class="portfolio-card-img"
+                    width="600"
+                    height="375"
+                    loading="lazy"
+                  />
+                </div>
+
+                <div class="portfolio-card-content">
+                  <h2 class="portfolio-card-title">{project.title}</h2>
+                  <p class="portfolio-card-org">{project.organization}</p>
+                  <p class="portfolio-card-desc">{project.description}</p>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <style>
+    /* ═══════════════════════════════════════════════════════════════════════════
+     1. Portfolio Hero (Matches About header without description)
+     ═══════════════════════════════════════════════════════════════════════════ */
+    .portfolio-hero {
+      padding-top: var(--space-16);
+      padding-bottom: var(--space-8);
+      position: relative;
+    }
+
+    .portfolio-hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 52rem;
+    }
+
+    .portfolio-hero-headline {
+      font-size: 60px;
+      color: var(--color-secondary);
+      line-height: var(--leading-tight);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-6);
+    }
+
+    .portfolio-hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-3);
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--btn-radius);
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-secondary);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .meta-icon {
+      width: 1rem;
+      height: 1rem;
+      color: var(--color-accent-dark);
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════════
+     2. Portfolio Grid (3 Columns, 2 Rows)
+     ═══════════════════════════════════════════════════════════════════════════ */
+    .portfolio-section {
+      padding-top: var(--space-4);
+      padding-bottom: var(--space-24);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+    }
+
+    /* ── Portfolio Card (Matches the Contact Glass Card styling) ────────────── */
+    .portfolio-card {
+      padding: var(--space-6);
+      border-radius: 1.75rem;
+      background: linear-gradient(
+        140deg,
+        rgba(255, 255, 255, 0.85) 0%,
+        rgba(235, 246, 254, 0.65) 100%
+      );
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow:
+        0 16px 48px rgba(46, 64, 87, 0.08),
+        0 2px 8px rgba(46, 64, 87, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      transition:
+        transform var(--transition-base),
+        box-shadow var(--transition-base);
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 20px 56px rgba(46, 64, 87, 0.12),
+        0 4px 12px rgba(46, 64, 87, 0.06);
+    }
+
+    /* ── Image at the top of card ───────────────────────────────────────────── */
+    .portfolio-card-media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      border-radius: 1.125rem;
+      overflow: hidden;
+      border: 1px solid var(--color-secondary-10);
+      box-shadow: 0 4px 16px rgba(46, 64, 87, 0.06);
+      background: var(--color-secondary-05);
+    }
+
+    .portfolio-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform var(--transition-base);
+    }
+
+    .portfolio-card:hover .portfolio-card-img {
+      transform: scale(1.03);
+    }
+
+    /* ── Content area ────────────────────────────────────────────────────────── */
+    .portfolio-card-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      flex: 1;
+    }
+
+    .portfolio-card-org {
+      font-family: var(--font-body);
+      font-size: var(--text-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-accent-dark);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      line-height: var(--leading-normal);
+    }
+
+    .portfolio-card-title {
+      font-family: var(--font-heading);
+      font-size: var(--text-xl);
+      color: var(--color-secondary);
+      line-height: var(--leading-snug);
+    }
+
+    .portfolio-card-desc {
+      font-size: var(--text-sm);
+      line-height: var(--leading-relaxed);
+      color: var(--color-secondary-90);
+      margin-top: var(--space-2);
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════════
+     Reduced Motion
+     ═══════════════════════════════════════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      .portfolio-card:hover,
+      .portfolio-card:hover .portfolio-card-img {
+        transform: none;
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════════════════════
+     Responsive Breakpoints
+     ═══════════════════════════════════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-6);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .portfolio-hero {
+        padding-top: var(--space-12);
+        padding-bottom: var(--space-6);
+      }
+
+      .portfolio-hero-headline {
+        font-size: var(--text-3xl) !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        max-width: 26rem;
+        margin-inline: auto;
+      }
+    }
+  </style>
+</BaseLayout>
