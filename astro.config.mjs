@@ -12,6 +12,6 @@ import { defineConfig } from 'astro/config';
 // ─────────────────────────────────────────────────────────────────────────────
 export default defineConfig({
   output: 'static',
-  site: 'https://YOUR-USERNAME.github.io',  // TODO: replace YOUR-USERNAME
-  base: '/YOUR-REPO-NAME',                  // TODO: replace YOUR-REPO-NAME; delete when using a custom domain
+  site: 'https://a9uv.github.io',
+  base: '/white.fawn',                      // delete this line when switching to a custom domain
 });
